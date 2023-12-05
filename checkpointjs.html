@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoint JS</title>
+</head>
+<body>
+    <ul>
+
+    </ul>
+    <script>
+        async function pokedex() {
+    let ul = document.querySelector("ul");
+    let body = document.querySelector("body");
+    let get = await fetch ("https://pokeapi.co/api/v2/pokemon/bulbasaur");
+    let pokemon = await get.json();
+    let obj = {
+        name:  pokemon.name,
+        base_experience: pokemon.base_experience,
+        abilities: pokemon.abilities
+    }
+    let objss = obj.abilities[0];
+    if (objss.is_hidden === false) {
+        let p1 = document.createElement("p");
+    let p2 = document.createElement("p");
+    p1.innerHTML = obj.name;
+    p2.innerHTML = obj.base_experience;
+    body.appendChild(p1);
+    body.appendChild(p2);
+    let li = document.createElement("li");
+    li.value = objss.ability;
+    li.innerHTML = objss.ability;
+    ul.appendChild(li);
+    }
+
+}
+pokedex()
+    </script>
+</body>
+</html>
